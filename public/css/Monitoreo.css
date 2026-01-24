@@ -18,16 +18,18 @@ body{
   font-family:"Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
-
+/* ✅ 2 columnas: mapa + panel derecho */
 .monitoring-page{
   width:100%;
   margin:0;
-  padding:12px 12px;               
-  grid-template-columns: 1fr 360px; 
+  padding:12px;
+  display:grid;
+  grid-template-columns: 1fr 360px;
+  gap:16px;
   align-items:stretch;
 }
 
-
+/* Cards */
 .map-card,
 .side-card{
   background:var(--bg);
@@ -37,7 +39,7 @@ body{
   overflow:hidden;
 }
 
-
+/* Toolbar mapa */
 .map-toolbar{
   display:flex;
   gap:14px;
@@ -88,40 +90,29 @@ body{
   white-space:nowrap;
 }
 
-.btn-center:hover{
-  background:#f8fafc;
-}
+.btn-center:hover{ background:#f8fafc; }
 
-
+/* ✅ Map stage: ocupa casi todo el alto */
 .map-stage{
   position:relative;
-  height:calc(100vh - 240px); 
-  min-height:520px;
+  height: calc(100vh - 170px); /* ajuste más real (topbar+toolbar+padding) */
+  min-height: 520px;
   background:#f3f4f6;
 }
 
-
-.map-placeholder{
+/* Leaflet full */
+.leaflet-map{
   width:100%;
   height:100%;
-  display:block;
-  padding:0;
 }
 
-
-.map-grid{
-  width:100%;
-  height:100%;
-  max-width:none;
-  max-height:none;
-  border-radius:0;
-  border:0;
-  background:
-    repeating-linear-gradient(0deg, #f2f4f7 0 24px, #e7ebf0 24px 26px),
-    repeating-linear-gradient(90deg, #f2f4f7 0 24px, #e7ebf0 24px 26px);
+#map{
+  user-select:none;
+  -webkit-user-select:none;
+  -ms-user-select:none;
 }
 
-
+/* Controles */
 .map-controls{
   position:absolute;
   right:14px;
@@ -145,7 +136,6 @@ body{
   display:grid;
   place-items:center;
 }
-
 .ctrl-btn:hover{ background:#f8fafc; }
 
 .ctrl-label{
@@ -155,7 +145,7 @@ body{
   font-size:12px;
 }
 
-
+/* Panel derecho */
 .side-header{
   padding:18px 18px 14px 18px;
   border-bottom:1px solid var(--border);
@@ -212,10 +202,7 @@ body{
 .incident-icon.assault{ background:rgba(202,163,0,.14); color:var(--assault); }
 .incident-icon.accident{ background:rgba(14,165,233,.12); color:var(--accident); }
 
-.incident-name{
-  font-weight:700;
-  color:#0f172a;
-}
+.incident-name{ font-weight:700; color:#0f172a; }
 
 .incident-badge{
   min-width:34px;
@@ -258,13 +245,11 @@ body{
   display:flex;
   gap:8px;
 }
-
 .total-bars .bar{
   height:6px;
   border-radius:999px;
   flex:1;
 }
-
 .bar.medical{ background:var(--medical); }
 .bar.fire{ background:var(--fire); }
 .bar.assault{ background:var(--assault); }

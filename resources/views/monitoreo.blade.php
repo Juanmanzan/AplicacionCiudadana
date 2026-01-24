@@ -1,17 +1,20 @@
 @extends('layouts.Layout_Admin')
 
 @section('fullWidth', 'true')
-
 @section('title', 'Monitoreo')
 
 @push('styles')
 <link rel="stylesheet" href="{{ asset('css/Monitoreo.css') }}">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+      crossorigin="">
 @endpush
 
 @section('content')
- <div class="container-fluid p-0">
+<div class="container-fluid p-0">
   <div class="monitoring-page">
 
+    <!-- ✅ MAPA (IZQUIERDA) -->
     <section class="map-card">
       <div class="map-toolbar">
         <div class="search-field">
@@ -26,16 +29,17 @@
       </div>
 
       <div class="map-stage">
-        
         <div id="map" class="leaflet-map"></div>
 
         <div class="map-controls">
           <button class="ctrl-btn" type="button" id="zoomIn"><i class="bi bi-plus"></i></button>
-          <div class="ctrl-label" id="zoomLabel">100%</div>
+          <div class="ctrl-label" id="zoomLabel">Zoom</div>
           <button class="ctrl-btn" type="button" id="zoomOut"><i class="bi bi-dash"></i></button>
         </div>
       </div>
+    </section>
 
+    <!-- ✅ PANEL DERECHO (TIPOS) -->
     <aside class="side-card">
       <div class="side-header">
         <h3 class="side-title">Tipos de siniestros</h3>
@@ -95,6 +99,10 @@
 </div>
 @endsection
 
+{{-- ✅ ORDEN CORRECTO: primero Leaflet, luego tu JS --}}
 @push('scripts')
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+        crossorigin=""></script>
 <script src="{{ asset('js/Monitoreo.js') }}"></script>
 @endpush
