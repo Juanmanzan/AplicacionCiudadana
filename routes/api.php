@@ -1,13 +1,20 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\EmergenciaController;
+use App\Http\Controllers\Api\EmergenciaApiController;
+
+
 use App\Http\Controllers\Api\AuthController;
-use App\Http\Controllers\Api\UsuarioController;
 use App\Http\Controllers\Api\ContactoController;
 use App\Http\Controllers\Api\MensajePredefinidoController;
+use App\Http\Controllers\Api\UsuarioController;
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
+
+
+
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/me', [AuthController::class, 'me']);
@@ -34,4 +41,15 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::put('/usuarios/{cedula}', [UsuarioController::class, 'update']);
         Route::delete('/usuarios/{cedula}', [UsuarioController::class, 'destroy']);
     });
+    Route::post('/emergencias/reporte', [EmergenciaController::class, 'reporte']);
+    Route::post('/emergencias/alerta', [EmergenciaController::class, 'alerta']);
+
+    Route::get('/emergencias/mis-emergencias', [EmergenciaApiController::class, 'miHistorial']);
+
+    Route::get('/emergencias/{id}', [EmergenciaApiController::class, 'show'])
+        ->whereNumber('id');
+
+    Route::post('/emergencias/{id}/cancelar', [EmergenciaController::class, 'cancelar'])
+        ->whereNumber('id')
+        ->name('api.emergencias.cancelar');
 });

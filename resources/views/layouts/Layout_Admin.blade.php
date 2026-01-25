@@ -111,6 +111,14 @@
       line-height: 1.05;
     }
 
+    .user-chip{
+      cursor: pointer;
+    }
+
+    .user-chip.dropdown-toggle::after{
+      margin-left: .6rem;
+    }
+    
     .main-footer{
       background: var(--bg);
       border-top: 1px solid var(--border);
@@ -183,26 +191,47 @@
           </ul>
 
           <div class="d-flex align-items-center ms-lg-auto mt-3 mt-lg-0">
-            <div class="user-chip">
-              <div class="user-avatar">
-                @php
-                  $nombreCompleto = trim(($admin->nombres ?? '') . ' ' . ($admin->apellidos ?? ''));
-                  $partes = preg_split('/\s+/', $nombreCompleto);
+            @auth
+            <div class="dropdown">
+              <a
+                href="#"
+                class="user-chip dropdown-toggle text-decoration-none"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <div class="user-avatar">
+                  @php
+                    $nombreCompleto = trim(($admin->nombres ?? '') . ' ' . ($admin->apellidos ?? ''));
+                    $partes = preg_split('/\s+/', $nombreCompleto);
 
-                  $inicialNombre = strtoupper(substr($partes[0] ?? 'A', 0, 1));
-                  $inicialApellido = strtoupper(substr($partes[1] ?? 'D', 0, 1));
+                    $inicialNombre = strtoupper(substr($partes[0] ?? 'A', 0, 1));
+                    $inicialApellido = strtoupper(substr($partes[1] ?? 'D', 0, 1));
 
-                  $initials = $inicialNombre . $inicialApellido;
-                @endphp
-                {{ $initials }}
-              </div>
+                    $initials = $inicialNombre . $inicialApellido;
+                  @endphp
+                  {{ $initials }}
+                </div>
 
-              <div class="d-flex flex-column">
-                <div class="user-name">Administrador</div>
-                <div class="user-email">{{ $admin->correo_electronico }}</div>
-              </div>
+                <div class="d-flex flex-column">
+                  <div class="user-name">Administrador</div>
+                  <div class="user-email">{{ $admin->correo_electronico }}</div>
+                </div>
+              </a>
+
+              <ul class="dropdown-menu dropdown-menu-end shadow-sm">
+                <li>
+                  <form method="POST" action="{{ route('logout') }}" class="m-0">
+                    @csrf
+                    <button type="submit" class="dropdown-item text-danger">
+                      <i class="bi bi-box-arrow-right me-2"></i> Cerrar sesión
+                    </button>
+                  </form>
+                </li>
+              </ul>
             </div>
-          </div>
+            @endauth
+        </div>
         </div>
 
       </div>

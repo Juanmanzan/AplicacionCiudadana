@@ -1,0 +1,31 @@
+
+  /* contenedor base */
+  #m_iconWrap {
+    background: #f1f3f5;
+    color: #6c757d;
+  }
+
+  /* medico (rosado) */
+  #m_iconWrap.icon-medical {
+    background: #ffeef0;
+    color: #e63946;
+  }
+
+  /* incendio (naranja) */
+  #m_iconWrap.icon-fire {
+    background: #fff4e6;
+    color: #f77f00;
+  }
+
+  /* asalto (amarillo) */
+  #m_iconWrap.icon-assault {
+    background: #fff9db;
+    color: #f4b400;
+  }
+
+  /* transito (celeste) */
+  #m_iconWrap.icon-traffic {
+    background: #e7f5ff;
+    color: #1c7ed6;
+  }
+

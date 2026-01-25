@@ -266,3 +266,126 @@ body{
     min-height:520px;
   }
 }
+
+/*marcadores*/
+
+/* wrapper del divIcon */
+.flat-marker-wrap {
+  background: transparent !important;
+  border: 0 !important;
+}
+
+/* marcador */
+.flat-marker {
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--c) 18%, white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,.15);
+}
+
+/* icono */
+.flat-marker i {
+  font-size: 16px;
+  color: var(--c);
+  line-height: 1;
+}
+
+/* poup marcadores de emergencia */
+
+/* Quita el look default del popup */
+.leaflet-popup-content-wrapper {
+  border-radius: 14px !important;
+  padding: 0 !important;
+  overflow: hidden;
+  box-shadow: 0 16px 40px rgba(0,0,0,.18) !important;
+}
+
+.leaflet-popup-content {
+  margin: 0 !important;
+  width: 310px; /* ajusta si quieres */
+}
+
+.leaflet-popup-tip {
+  box-shadow: 0 12px 24px rgba(0,0,0,.12);
+}
+
+/* Tarjeta */
+.emg-popup { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial; }
+
+.emg-head {
+  background: var(--head, #ef4444);
+  color: #fff;
+  padding: 10px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.emg-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 800;
+  font-size: 14px;
+}
+
+.emg-badges { display:flex; gap:6px; flex-wrap: wrap; justify-content: flex-end; }
+.emg-chip {
+  background: rgba(255,255,255,.18);
+  border: 1px solid rgba(255,255,255,.28);
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.emg-body {
+  background: #fff;
+  padding: 12px;
+}
+
+.emg-desc {
+  font-size: 13px;
+  line-height: 1.35;
+  color: #0f172a;
+  margin-bottom: 10px;
+}
+
+.emg-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 12.5px;
+  color: #0f172a;
+  margin: 8px 0;
+}
+
+.emg-row i {
+  color: #64748b;
+  margin-top: 2px;
+}
+
+.emg-muted { color: #64748b; font-weight: 600; }
+
+.emg-btn {
+  margin-top: 12px;
+  width: 100%;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 12px;
+  background: #0ea5e9;
+  color: #fff;
+  font-weight: 800;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.emg-btn:hover { filter: brightness(0.95); }
