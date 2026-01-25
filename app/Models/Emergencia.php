@@ -4,14 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-
-// Ajusta el import según el paquete Magellan que estés usando
 use Clickbar\Magellan\Data\Geometries\Point;
 
 class Emergencia extends Model
 {
     protected $table = 'emergencia';
     protected $primaryKey = 'id_emergencia';
+    public $timestamps = true;
 
     protected $fillable = [
         'cedula_usuario',
@@ -20,10 +19,13 @@ class Emergencia extends Model
         'ubicacion',
         'fecha_hora',
         'estado',
+        'cancelable_hasta',
+        'confirmada_en',
     ];
 
+
     protected $casts = [
-        // Magellan: convierte a objeto Point automáticamente
+        
         'ubicacion' => Point::class,
         'fecha_hora' => 'datetime',
     ];
@@ -37,4 +39,9 @@ class Emergencia extends Model
     {
         return $this->belongsTo(TipoEmergencia::class, 'id_tipo_emergencia', 'id_tipo_emergencia');
     }
+
+    public const ESTADO_EN_VERIFICACION = 'EN_VERIFICACION';
+    public const ESTADO_CONFIRMADA = 'CONFIRMADA';
+    public const ESTADO_ATENDIDA = 'ATENDIDA';
+    public const ESTADO_FALSA_ALARMA = 'FALSA_ALARMA';
 }
